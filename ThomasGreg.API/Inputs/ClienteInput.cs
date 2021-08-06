@@ -5,9 +5,9 @@ namespace ThomasGreg.API.Inputs
     public class ClienteInput
     {
         [Required(ErrorMessage = "Email é obrigatório.")]
-        public string Email { get; private set; }
-        public string Nome { get; private set; }
-        public string Logotipo { get; private set; }
-        public string Logradouro { get; private set; }
+        public string Email { get; set; }
+        public string Nome { get; set; }
+        public string Logotipo { get; set; }
+        public string Logradouro { get; set; }
     }
 }

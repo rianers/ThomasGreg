@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ThomasGreg.Domain
 {
@@ -22,7 +23,6 @@ namespace ThomasGreg.Domain
         public string Email { get; private set; }
         public string Logotipo { get; private set; }
         public List<string> Logradouro { get; private set; }
-
 
         public void AdicionarLogradouro(string logradouro)
         {

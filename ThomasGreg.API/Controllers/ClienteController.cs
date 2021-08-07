@@ -11,35 +11,35 @@ namespace ThomasGreg.API.Controllers
     public class ClienteController : ControllerBase
     {
         [HttpGet("{email}")]
-        public async Task<IActionResult> Get(string email, [FromServices] ClienteApplication clienteApplication)
+        public async Task<IActionResult> Get(string email, [FromServices] ClienteHandler clienteHandler)
         {
-            Cliente cliente = await clienteApplication.BuscarCliente(email);
+            Cliente cliente = await clienteHandler.BuscarCliente(email);
 
             return Ok(cliente);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ClienteInput clienteInput, [FromServices] ClienteApplication clienteApplication)
+        public async Task<IActionResult> Post([FromBody] ClienteInput clienteInput, [FromServices] ClienteHandler clienteHandler)
         {
-            await clienteApplication.InserirCliente(clienteInput.Nome, clienteInput.Email, clienteInput.Logotipo, clienteInput.Logradouro);
+            await clienteHandler.InserirCliente(clienteInput.Nome, clienteInput.Email, clienteInput.Logotipo, clienteInput.Logradouro);
 
             return RedirectToAction(nameof(Get), new { email = clienteInput.Email });
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] ClienteInput clienteInput, [FromServices] ClienteApplication clienteApplication)
+        public async Task<IActionResult> Update([FromBody] ClienteInput clienteInput, [FromServices] ClienteHandler clienteHandler)
         {
-            await clienteApplication.AtualizarCliente(clienteInput.Nome, clienteInput.Email, clienteInput.Logotipo);
+            await clienteHandler.AtualizarCliente(clienteInput.Nome, clienteInput.Email, clienteInput.Logotipo);
 
             return RedirectToAction(nameof(Get), new { email = clienteInput.Email });
         }
 
         [HttpDelete("{email}")]
-        public async Task<IActionResult> Delete(string email, [FromServices] ClienteApplication clienteApplication)
+        public async Task<IActionResult> Delete(string email, [FromServices] ClienteHandler clienteHandler)
         {
-            await clienteApplication.RemoverCliente(email);
+            await clienteHandler.RemoverCliente(email);
 
-            return RedirectToAction(nameof(Get), new { email = email });
+            return RedirectToAction(nameof(Get), new { email });
         }
     }
 }

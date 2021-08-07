@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using ThomasGreg.Application.Handler;
 using ThomasGreg.Application.Repositories;
 using ThomasGreg.Infra.Database;
 
@@ -24,7 +25,9 @@ namespace ThomasGreg.API
             services.AddControllersWithViews();
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
-            services.AddScoped<ClienteApplication, ClienteApplication>();
+            services.AddScoped<ILogradouroRepository, LogradouroRepository>();
+            services.AddScoped<ClienteHandler, ClienteHandler>();
+            services.AddScoped<LogradouroHandler, LogradouroHandler>();
 
             services.AddSwaggerGen(C =>
             {

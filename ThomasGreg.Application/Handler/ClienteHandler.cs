@@ -3,11 +3,11 @@ using ThomasGreg.Domain;
 
 namespace ThomasGreg.Application.Repositories
 {
-    public class ClienteApplication
+    public class ClienteHandler
     {
         private readonly IClienteRepository _clienteRepository;
 
-        public ClienteApplication(IClienteRepository clienteRepository)
+        public ClienteHandler(IClienteRepository clienteRepository)
         {
             _clienteRepository = clienteRepository;
         }
@@ -16,7 +16,7 @@ namespace ThomasGreg.Application.Repositories
         {
             var clienteEmail = await _clienteRepository.Buscar(email);
 
-            if (clienteEmail != null)
+            if (clienteEmail == null)
                 throw new ClienteNaoEncontradoException(email);
 
             return await _clienteRepository.Buscar(email);
@@ -26,7 +26,7 @@ namespace ThomasGreg.Application.Repositories
         {
             var clienteEmail = await _clienteRepository.Buscar(email);
 
-            if (clienteEmail != null)
+            if (clienteEmail == null)
                 throw new ClienteNaoEncontradoException(email);
 
             Cliente cliente = new Cliente(nome, email, logotipo, logradouro);
@@ -38,7 +38,7 @@ namespace ThomasGreg.Application.Repositories
         {
             var clienteEmail = await _clienteRepository.Buscar(email);
 
-            if (clienteEmail != null)
+            if (clienteEmail == null)
                 throw new ClienteNaoEncontradoException(email);
 
             Cliente cliente = new Cliente(nome, email, logotipo);
@@ -50,7 +50,7 @@ namespace ThomasGreg.Application.Repositories
         {
             var clienteEmail = await _clienteRepository.Buscar(email);
 
-            if (clienteEmail != null)
+            if (clienteEmail == null)
                 throw new ClienteNaoEncontradoException(email);
 
             await _clienteRepository.Remover(email);

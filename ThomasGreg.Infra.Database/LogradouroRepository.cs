@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using ThomasGreg.Application.Repositories;
 using ThomasGreg.Domain;

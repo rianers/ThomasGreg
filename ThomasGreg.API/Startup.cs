@@ -31,7 +31,7 @@ namespace ThomasGreg.API
 
             services.AddSwaggerGen(C =>
             {
-                C.SwaggerDoc("v1", new OpenApiInfo { Title= "Sistema de Identificação", Description = "API'S desenvolvidas para o Sistema de Identificação da Thomas Greg", Version = "v1" });
+                C.SwaggerDoc("v1", new OpenApiInfo { Title = "Sistema de Identificação", Description = "API'S desenvolvidas para o Sistema de Identificação da Thomas Greg", Version = "v1" });
             });
         }
 

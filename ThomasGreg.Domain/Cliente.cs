@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ThomasGreg.Domain
 {
@@ -10,6 +9,7 @@ namespace ThomasGreg.Domain
             Nome = nome;
             Email = email;
             Logotipo = logotipo;
+            Logradouro = new List<string>();
         }
         public Cliente(string nome, string email, string logotipo, string logradouro) : this(nome, email, logotipo)
         {
@@ -29,19 +29,18 @@ namespace ThomasGreg.Domain
             Logradouro.Add(logradouro);
         }
 
-        public void AtualizarLogradouro(string logradouro)
+        public void AtualizarLogradouro(string logradouroAntigo, string logradouroAtual)
         {
-            bool item = Logradouro.Contains(logradouro);
-
-            var indice = Logradouro.IndexOf(logradouro);
+            bool item = Logradouro.Contains(logradouroAntigo);
 
             if (item == true)
             {
-                Logradouro[indice] = logradouro;
+                var indice = Logradouro.IndexOf(logradouroAntigo);
+                Logradouro[indice] = logradouroAtual;
                 return;
             }
 
-            Logradouro.Add(logradouro);
+            Logradouro.Add(logradouroAtual);
         }
 
         public void RemoverLogradouro(string logradouro)

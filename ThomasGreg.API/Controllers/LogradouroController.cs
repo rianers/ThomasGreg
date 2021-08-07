@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ThomasGreg.API.Inputs;
 using ThomasGreg.Application.Handler;
@@ -29,11 +26,11 @@ namespace ThomasGreg.API.Controllers
             return Ok(RedirectToAction(nameof(Get), new { email = logradouroInput.Email, logradouro = logradouroInput.Logradouro }));
         }
 
-        [HttpPut]
+        [HttpPut("{logradouro}")]
 
-        public async Task<IActionResult> Update([FromBody] LogradouroInput logradouroInput, [FromServices] LogradouroHandler logradouroHandler)
+        public async Task<IActionResult> Update(string logradouroAntigo, [FromBody] LogradouroInput logradouroInput, [FromServices] LogradouroHandler logradouroHandler)
         {
-            await logradouroHandler.AtualizarLogradouro(logradouroInput.Email, logradouroInput.Logradouro);
+            await logradouroHandler.AtualizarLogradouro(logradouroInput.Email, logradouroAntigo, logradouroInput.Logradouro);
 
             return Ok(RedirectToAction(nameof(Get), new { email = logradouroInput.Email, logradouro = logradouroInput.Logradouro }));
         }

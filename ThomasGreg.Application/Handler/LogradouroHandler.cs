@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ThomasGreg.Application.Repositories;
 using ThomasGreg.Domain;
 
@@ -41,15 +38,15 @@ namespace ThomasGreg.Application.Handler
             await _logradouroRepository.InserirLogradouro(cliente);
         }
 
-        public async Task AtualizarLogradouro(string email, string logradouro)
+        public async Task AtualizarLogradouro(string email, string logradouroAntigo, string logradouroAtual)
         {
             Cliente cliente = await _clienteRepository.Buscar(email);
 
             ValidarCliente(email);
 
-            ValidarLogradouro(email, logradouro);
+            ValidarLogradouro(email, logradouroAntigo);
 
-            cliente.AtualizarLogradouro(logradouro);
+            cliente.AtualizarLogradouro(logradouroAntigo, logradouroAtual);
 
             await _logradouroRepository.AtualizarLogradouro(cliente);
         }

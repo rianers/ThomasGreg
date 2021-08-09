@@ -30,9 +30,9 @@ Uma série de exemplos passo-a-passo que informam o que você deve executar para
 <h1> 🛠️ Construído com </h1>
 Tecnologia: .NET Core 3.1
 
-Swagger - Ferramenta para criação da documentação da API
+Swagger - Ferramenta para criação da documentação da API.
 </br>
-Dapper - ORM (Object Relational Mapping) utilizado para criação de relação entre o modelo físico e o modelo lógico da aplicação
+Dapper - ORM (Object Relational Mapping) utilizado para criação de relação entre o modelo físico e o modelo lógico da aplicação.
 
 
 ⌨️ por Riane 😊 

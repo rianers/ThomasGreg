@@ -17,7 +17,7 @@ Uma série de exemplos passo-a-passo que informam o que você deve executar para
 
 <pre> <code>  
 1. Recrie a base de dados SQL em seu desktop. Para o funcionamento do projeto, são necessárias duas tabelas: 
-<i> Cliente </i> e <i> Logradouro </i>. Aqui está o script para criação das mesmas: <a href="src/ScriptDB.txt"> Script </a>
+<i> Cliente </i> e <i> Logradouro </i>. Aqui está o script para criação das mesmas: <a href="ScriptDB.txt"> Script </a>
 </br>
 2. Clone o projeto e encontre o arquivo 'appsettings.json'. 
 </br>

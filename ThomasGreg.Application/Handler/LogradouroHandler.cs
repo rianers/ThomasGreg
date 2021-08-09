@@ -33,7 +33,7 @@ namespace ThomasGreg.Application.Handler
 
         public async Task AdicionarLogradouro(string email, string logradouroNome)
         {
-            Logradouro logradouro = new Logradouro(email, logradouroNome);
+            Logradouro logradouro = new Logradouro(logradouroNome, email);
 
             await _logradouroRepository.InserirLogradouro(logradouro);
         }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ThomasGreg.Application.Repositories;
 using ThomasGreg.Domain;
 
@@ -6,74 +7,63 @@ namespace ThomasGreg.Application.Handler
 {
     public class LogradouroHandler
     {
-        private readonly IClienteRepository _clienteRepository;
 
         private readonly ILogradouroRepository _logradouroRepository;
 
-        public LogradouroHandler(IClienteRepository clienteRepository, ILogradouroRepository logradouroRepository)
+        public LogradouroHandler(ILogradouroRepository logradouroRepository)
         {
-            _clienteRepository = clienteRepository;
             _logradouroRepository = logradouroRepository;
         }
 
-        public async Task<Cliente> BuscarLogradouro(string email, string logradouro)
+        public async Task<Logradouro> BuscarLogradouro(string email, string logradouroNome)
         {
-            ValidarCliente(email);
+            Logradouro logradouro = await _logradouroRepository.BuscarLogradouro(email, logradouroNome);
 
-            var clienteLogradouro = await _logradouroRepository.BuscarLogradouro(email, logradouro);
+            ValidarLogradouro(logradouro);
 
-            ValidarLogradouro(email, logradouro);
-
-            return clienteLogradouro;
+            return logradouro;
         }
 
-        public async Task AdicionarLogradouro(string email, string logradouro)
+        public async Task<IEnumerable<Logradouro>> BuscarTodos(string email)
         {
-            Cliente cliente = await _clienteRepository.Buscar(email);
+            IEnumerable<Logradouro> logradouros = await _logradouroRepository.BuscarTodos(email);
 
-            ValidarCliente(email);
+            return logradouros;
+        }
 
-            cliente.AdicionarLogradouro(logradouro);
+        public async Task AdicionarLogradouro(string email, string logradouroNome)
+        {
+            Logradouro logradouro = new Logradouro(email, logradouroNome);
 
-            await _logradouroRepository.InserirLogradouro(cliente);
+            await _logradouroRepository.InserirLogradouro(logradouro);
         }
 
         public async Task AtualizarLogradouro(string email, string logradouroAntigo, string logradouroAtual)
         {
-            Cliente cliente = await _clienteRepository.Buscar(email);
+            Logradouro logradouro = await _logradouroRepository.BuscarLogradouro(email, logradouroAntigo);
 
-            ValidarCliente(email);
+            ValidarLogradouro(logradouro);
 
-            ValidarLogradouro(email, logradouroAntigo);
+            logradouro.AtualizarLogradouro(logradouroAtual);
 
-            cliente.AtualizarLogradouro(logradouroAntigo, logradouroAtual);
-
-            await _logradouroRepository.AtualizarLogradouro(cliente);
+            await _logradouroRepository.AtualizarLogradouro(logradouro);
         }
 
-        public async Task RemoverLogradouro(string email, string logradouro)
+        public async Task RemoverLogradouro(string email, string logradouroNome)
         {
-            Cliente cliente = await _clienteRepository.Buscar(email);
+            Logradouro logradouro = await _logradouroRepository.BuscarLogradouro(email, logradouroNome);
 
-            ValidarCliente(email);
+            ValidarLogradouro(logradouro);
 
-            ValidarLogradouro(email, logradouro);
+            Logradouro logradouroAtual = new Logradouro(logradouroNome, email);
 
-            cliente.RemoverLogradouro(logradouro);
-
-            await _logradouroRepository.RemoverLogradouro(email, logradouro);
+            await _logradouroRepository.RemoverLogradouro(logradouroAtual);
         }
 
-        private void ValidarCliente(string email)
-        {
-            if (email == null)
-                throw new ClienteNaoEncontradoException(email);
-        }
-
-        private void ValidarLogradouro(string email, string logradouro)
+        private void ValidarLogradouro(Logradouro logradouro)
         {
             if (logradouro == null)
-                throw new LogradouroNaoEncontradoException(logradouro, email);
+                throw new LogradouroNaoEncontradoException();
         }
     }
 }

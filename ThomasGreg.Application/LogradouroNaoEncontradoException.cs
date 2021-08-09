@@ -4,7 +4,7 @@ namespace ThomasGreg.Application
 {
     public class LogradouroNaoEncontradoException : Exception
     {
-        public LogradouroNaoEncontradoException(string logradouro, string email) : base($"{logradouro} não foi encontrado para o cliente {email}.")
+        public LogradouroNaoEncontradoException() : base("Logradouro não encontrado.")
         {
         }
     }

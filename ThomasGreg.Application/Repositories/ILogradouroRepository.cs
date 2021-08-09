@@ -1,15 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ThomasGreg.Domain;
 
 namespace ThomasGreg.Application.Repositories
 {
     public interface ILogradouroRepository
     {
-        Task<Cliente> BuscarLogradouro(string email, string logradouro);
-        Task InserirLogradouro(Cliente cliente);
+        Task<Logradouro> BuscarLogradouro(string email, string logradouro);
+        Task<IEnumerable<Logradouro>> BuscarTodos(string email);
+        Task InserirLogradouro(Logradouro logradouro);
 
-        Task AtualizarLogradouro(Cliente cliente);
+        Task AtualizarLogradouro(Logradouro logradouro);
 
-        Task RemoverLogradouro(string email, string logradouro);
+        Task RemoverLogradouro(Logradouro logradouro);
     }
 }

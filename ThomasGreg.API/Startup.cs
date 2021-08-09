@@ -2,11 +2,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ThomasGreg.Application.Handler;
 using ThomasGreg.Application.Repositories;
-using ThomasGreg.Infra.Database;
+using ThomasGreg.Infra.Database.Repositories;
 
 namespace ThomasGreg.API
 {
@@ -29,6 +28,8 @@ namespace ThomasGreg.API
             services.AddScoped<ClienteHandler, ClienteHandler>();
             services.AddScoped<LogradouroHandler, LogradouroHandler>();
 
+            services.AddSingleton(Configuration);
+
             services.AddSwaggerGen(C =>
             {
                 C.SwaggerDoc("v1", new OpenApiInfo { Title = "Sistema de Identificação", Description = "API'S desenvolvidas para o Sistema de Identificação da Thomas Greg", Version = "v1" });
@@ -38,19 +39,6 @@ namespace ThomasGreg.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-            //COMENTAR:
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
-            //COMENTAR!
-
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>

@@ -57,4 +57,4 @@ Swagger - Ferramenta para criação da documentação da API.
 Dapper - Micro ORM utilizado para criação de relação entre o modelo físico e o modelo lógico da aplicação.
 
 
-⌨️ por Riane 😊 
+ by Riane 😊 

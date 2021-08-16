@@ -1,7 +1,7 @@
 <h1> Sistema de Identificação </h1>
 CRUD criado para cadastro de clientes com logotipo, onde são enviadas requisições HTTP para gerenciamento.
 
-No sistema há 9 API'S divididas em: <i> Cliente </i> e <i> Logradouro</i>. 
+No sistema há 2 API'S com endpoints divididos em: <i> Cliente </i> e <i> Logradouro</i>. 
 
 <h3> Cliente </h3>
 <ul>
